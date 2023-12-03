@@ -147,12 +147,12 @@ Do not leave a blank line underneath a every function declaration. This results 
 <tr><td><pre lang=swift>
 func foo() {
 	&nbsp; 
-	var bar = 1						
+	var bar = 1 	
 }
 </pre></td>
 <td><pre lang=swift>
 func foo() {
-	var bar = 1						
+	var bar = 1 	
 }
 </pre></td></tr>
 </table>
