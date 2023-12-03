@@ -1,6 +1,6 @@
 # iOS Coding Guidelines
 ### Table of Contents
-- [[#Xcode Settings]]
+- [Xcode Settings](#xcode-settings)
 - [[#Misc]]
 - [[#Colors]]
 - [[#Framework Extensions]]
