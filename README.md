@@ -10,7 +10,7 @@
 	- [No file header](#no-file-header)
 - [Code Format](#code-format)
 - [Xcode](#xcode)
-- [Accessibility](#accessability)
+- [Accessibility](#accessibility)
 - [Testing](#testing)
 
 
