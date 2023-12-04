@@ -7,7 +7,6 @@
 - [UIView • UIViewController Architecture](#uiview-uiviewcontroller-architecture)
 - [Access Qualifier](#access-qualifier)
 - [File Structure](#file-structure)
-	- [No file header](#no-file-header)
 - [Code Format](#code-format)
 - [Xcode](#xcode)
 - [Accessibility](#accessibility)
@@ -121,13 +120,10 @@ Remove comment header for newly created files since it will be always outdated (
 <table>
 <tr><th style="color: red;">NOT OK</th><th style="color: green;">OK</th></tr>
 <tr><td><pre lang=swift>
-//
 //  Foo.swift
 //  Beiwagen
-//
 //  Created by Dev on 04.12.23.
 //  Copyright © 2023 ioki. All rights reserved.
-//
 &nbsp; 
 import Foundation
 &nbsp; 
@@ -183,6 +179,47 @@ Compare the customizable SwiftLint rule [type_contents_order](https://realm.gith
 
 #### Use the `self.` syntax exclusively in closures and appropriate initializers
 So it will become easier to track down future retain cycles that are caused by missing `[weak self]` in the closure definition. Just leave out `self` if it is not necessary. Also use the `self.` syntax to initially assign constructor parameters to their respective properties if they have the same name.
+Don't use `self.` in the closure if `self` is unwrapped.
+<table>
+<tr><th style="color: red;">NOT OK</th><th style="color: green;">OK</th></tr>
+<tr><td><pre lang=swift>
+self.askForPermissions()
+network.readUser { _ in
+	self.updateUI()
+}
+</pre></td>
+<td><pre lang=swift>
+askForPermissions()
+network.readUser { [weak self] _ in
+	self?.updateUI()
+}
+</pre></td></tr>
+<tr>
+<td><pre lang="swift">
+network.readRide { [weak self] _ in
+	guard let self = self else { return }
+	self.updateUI()
+	self.notifySubscribers()
+}
+</pre></td>
+<td><pre lang="swift">
+network.readRide { [weak self] _ in
+	guard let self = self else { return }
+	updateUI()
+	notifySubscribers()
+}
+</pre></td>
+</tr>
+<tr>
+<td></td>
+<td><pre lang="swift">
+var network: Network
+init(network: Network) {
+	self.network = network
+}
+</pre></td>
+</tr>
+</table>
 
 #### Line Breaks
 Do not leave a blank line underneath a every function declaration. This results in more compact code blocks which can be perceived as **one** block easier.
