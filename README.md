@@ -1,17 +1,17 @@
 # iOS Coding Guidelines
 ### Table of Contents
 - [Xcode Settings](#xcode-settings)
-- [[#Misc]]
-- [[#Colors]]
-- [[#Framework Extensions]]
-- [[#UIView • UIViewController Architecture]]
-- [[#Access Qualifier]]
-- [[#File Structure]]
-	- [[#No file header]]
-- [[#Code Format]]
-- [[#Xcode]]
-- [[#Accessibility]]
-- [[#Testing]]
+- [Misc](#misc)
+- [Colors](#colors)
+- [Framework Extensions](#framework-extensions)
+- [UIView • UIViewController Architecture](#uiview-uiviewcontroller-architecture)
+- [Access Qualifier](#access-qualifier)
+- [File Structure](#file-structure)
+	- [No file header](#no-file-header)
+- [Code Format](#code-format)
+- [Xcode](#xcode)
+- [Accessibility](#accessability)
+- [Testing](#testing)
 
 
 ## Xcode Settings
