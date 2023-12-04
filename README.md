@@ -120,10 +120,27 @@ To be able to use symbols in tests declare them as `internal` (no prefix) instea
 Remove comment header for newly created files since it will be always outdated (copyright, spelling errors in file names, etc.).
 
 #### Type Contents Order
+
+Place the nested types at the bottom of the class/struct definition with a `MARK: - Sub-Types` above. Place protocol conformances above these nested types and mark them with their respective protocol name, e.g. `MARK: - StatePresentable`. 
+
+All other symbols (properties, function, etc.) should be ordered by ascending privateness, so `public`, `internal`, `private`. 
+
+`static` symbols are always above `non-static` ones. 
+
+The advantages of moving all protocols in the main object definition are:
+- the main class declaration shows all conformances of the class/struct
+- clean method list (`⌃+6`)
+- a unified file structure results in less searching for symbols, very similar to the `func setup<view>()` convention
+
+Compare the customizable SwiftLint rule [type_contents_order](https://realm.github.io/SwiftLint/type_contents_order.html).
+
+<table><tr><td><pre>
 - case
 - typealias, associatedtype
-- type property
-- instance property
+- static property
+- public property
+- internal property
+- private property
 - @IBInspectable
 - @IBOutlet
 - initializer
@@ -133,7 +150,9 @@ Remove comment header for newly created files since it will be always outdated (
 - @IBAction
 - other methods
 - subscript
-- subtype
+- protocol conformances, e.g. `MARK: - StatePresentable`
+- subtype `MARK: - Sub-Types`
+</pre></td></tr></table>
 
 ## Code Format
 
@@ -159,20 +178,6 @@ func foo() {
 
 #### Comments
 Comment functions and properties using `///` only if it enhances their comprehensibility. Generally comment code snippets if you think it is reasonable. Sometimes design choices or complex structures are not immediately obvious to understand, in such cases comments are useful for others and your future self.
-
-#### Symbol Order
-Place the nested types at the bottom of the class/struct definition with a `MARK: - Sub-Types` above. Place protocol conformances above these nested types and mark them with their respective protocol name, e.g. `MARK: - StatePresentable`. 
-
-All other symbols (properties, function, etc.) should be ordered by ascending privateness, so `public`, `internal`, `private`. 
-
-`static` symbols are always above `non-static` ones. 
-
-The advantages of moving all protocols in the main object definition are:
-- the main class declaration shows all conformances of the class/struct
-- clean method list (`⌃+6`)
-- a unified file structure results in less searching for symbols, very similar to the `func setup<view>()` convention
-
-Compare the customizable SwiftLint rule [type_contents_order](https://realm.github.io/SwiftLint/type_contents_order.html).
 
 #### Name bools with the pattern isState
 This is easy to read and matches the swifty naming conventions in modern iOS frameworks.
