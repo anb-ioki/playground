@@ -118,6 +118,31 @@ To be able to use symbols in tests declare them as `internal` (no prefix) instea
 
 #### No file header
 Remove comment header for newly created files since it will be always outdated (copyright, spelling errors in file names, etc.).
+<table>
+<tr><th style="color: red;">NOT OK</th><th style="color: green;">OK</th></tr>
+<tr><td><pre lang=swift>
+//
+//  Foo.swift
+//  Beiwagen
+//
+//  Created by Dev on 04.12.23.
+//  Copyright © 2023 ioki. All rights reserved.
+//
+&nbsp; 
+import Foundation
+&nbsp; 
+struct Foo {
+    let bar: Int
+}
+</pre></td>
+<td><pre lang=swift>
+import Foundation
+&nbsp; 
+struct Foo {
+    let bar: Int
+}
+</pre></td></tr>
+</table>
 
 #### Type Contents Order
 
@@ -150,8 +175,8 @@ Compare the customizable SwiftLint rule [type_contents_order](https://realm.gith
 - @IBAction
 - other methods
 - subscript
-- protocol conformances, e.g. `MARK: - StatePresentable`
-- subtype `MARK: - Sub-Types`
+- protocol conformances
+- subtype
 </pre></td></tr></table>
 
 ## Code Format
